@@ -10,6 +10,14 @@ class AnswerChoice < ApplicationRecord
   has_many :responses,
     primary_key: :id,
     foreign_key: :answer_choice_id,
-    class_name: :AnswerChoice
+    class_name: :Response
+
+  has_one :poll,
+    through: :question,
+    source: :poll
+
+  has_one :author,
+    through: :poll,
+    source: :author
 
 end
