@@ -60,9 +60,9 @@ def directed_by_one_of(them)
   # Find the id and title of all the movies directed by one of 'them'.
   # director_ids = them.map { |name| Actor.find_by(name: name) }
 
-  # Tricky: JOIN on movies.direct = actors.id because actors table includes directors
+  # Tricky: JOIN on movies.director = actors.id because actors table includes directors
   Movie.select("movies.id, movies.title")
-  .joins("JOIN actors ON movies.director_id = actors.id")
+  .joins(:director)
   .where("actors.name IN (?)", them)
 
 end
